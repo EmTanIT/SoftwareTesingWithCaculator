@@ -1,0 +1,204 @@
+.background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.wrapper {
+    width: 420px;
+    height: 480px;
+    background-color: white;
+    box-shadow: 10px 10px 10px rgb(69, 69, 69);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(145, 145, 145);
+
+    .close-btn {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s linear;
+
+        &:hover {
+            color: rgb(255, 255, 255);
+        }
+
+        .close {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.bottom {
+    height: calc(100% - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .heading {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .list {
+        padding-top: 20px;
+
+        .item {
+            .item-heading {
+                padding-bottom: 10px;
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+
+            .input {
+                padding: 10px;
+                width: 300px;
+                border: 1px solid black;
+                border-radius: 4px;
+                font-size: 1.4rem;
+                font-weight: 700;
+            }
+        }
+
+        .item + .item {
+            padding-top: 10px;
+        }
+    }
+
+    .button-wrapper {
+        padding-top: 36px;
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            background-color: rgb(145, 145, 145);
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: rgb(178, 178, 178);
+            }
+        }
+    }
+}
+
+.detail {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(67, 67, 67, 0.2);
+
+    .detail-wrapper {
+        width: 250px;
+        height: 150px;
+        background-color: rgb(145, 145, 145);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .detail-header {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .detail-icon {
+            padding: 5px;
+            width: 18px;
+            height: 18px;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                color: rgb(180, 55, 55);
+            }
+        }
+
+        .detail-header-title {
+            padding: 5px;
+            font-size: 1.4rem;
+        }
+    }
+
+    .detail-content {
+        width: 100%;
+        height: calc(100% - 28px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .detail-content-title {
+            width: 100%;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .detail-button {
+            padding-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 30px;
+
+            .button-close,
+            .button-cancel {
+                padding: 10px;
+                min-width: 70px;
+                border-radius: 10px;
+                font-size: 1.4rem;
+            }
+
+            .button-close {
+                background-color: rgb(0, 136, 220);
+                color: white;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: rgb(0, 114, 184);
+                }
+            }
+
+            .button-cancel {
+                background-color: rgb(202, 80, 80);
+                color: white;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: rgb(171, 62, 62);
+                }
+            }
+        }
+    }
+}

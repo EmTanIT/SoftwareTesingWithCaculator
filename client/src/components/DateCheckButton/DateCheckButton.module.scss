@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.btn {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(94, 94, 94);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgb(134, 134, 134);
+    }
+}
+
+.btn-desc {
+    font-size: 2rem;
+    color: white;
+}
