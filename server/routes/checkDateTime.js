@@ -9,9 +9,6 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const month = req.body.month;
     const year = req.body.year;
 
-    console.log(day,month,year);
-    
-
    //dùng isNaN(biến) để check xem biến đó có phải số k
     if(isNaN(day)){
         res.json("Input data for Day is incorrect format!");
@@ -24,6 +21,7 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
         return;
     }else if(parseInt(month) < 1 || parseInt(month) > 12){
         res.json("Input data for Month is out of range!")
+        return;
     }else if(isNaN(year)){
         res.json("Input data for Year is incorrect format!")
         return;
