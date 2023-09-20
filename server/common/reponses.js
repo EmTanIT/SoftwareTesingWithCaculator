@@ -21,3 +21,7 @@ export function MissingFieldResponse() {
 export function ErrorResponse(errorCode, errorMessage) {
     return Response(errorCode, errorMessage)
 }
+
+export function BadRequest(errorCode, errorMessage){
+    return Response(errorCode, errorMessage)
+}
