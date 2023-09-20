@@ -8,6 +8,8 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const day = req.body.day;
     const month = req.body.month;
     const year = req.body.year;
+
+    console.log(day,month,year);
     
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
