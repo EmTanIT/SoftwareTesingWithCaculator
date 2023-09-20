@@ -12,33 +12,36 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
     if(!day || !month || !year){
-        res.json(BadRequest("Input data field must be filled"));
+        // res.json(BadRequest("Input data field must be filled"));   
+        res.status(400).json("Input data field must be filled")
         return;
     }else if(isNaN(day)){
-        res.json(BadRequest("Input data for Day is incorrect format!"));
+        res.status(400).json("Input data for Day is incorrect format!");
         return;
     }else if(parseInt(day) < 1 || parseInt(day) > 31){
-        res.json(BadRequest("Input data for Day is out of range!"))
+        res.status(400).json("Input data for Day is out of range!");
         return;
     }else if(isNaN(month)){
-        res.json(BadRequest("Input data for Month is incorrect format!"))
+        res.status(400).json("Input data for Month is incorrect format!");
         return;
     }else if(parseInt(month) < 1 || parseInt(month) > 12){
-        res.json(BadRequest("Input data for Month is out of range!"))
+        res.status(400).json("Input data for Month is out of range!");
         return;
     }else if(isNaN(year)){
-        res.json(BadRequest("Input data for Year is incorrect format!"))
+        res.status(400).json("Input data for Year is incorrect format!");
         return;
     }else if(parseInt(year) < 1000 || parseInt(year) > 3000){
-        res.json(BadRequest("Input data for Year is out of range!"))
+        res.status(400).json("Input data for Year is out of range");
         return;
     }
     
     if(checkDateTime(day, month, year)){
-        res.json(ValidRequest(`${day}/${month}/${year} is correct date time!`))
+        // res.json(ValidRequest(`${day}/${month}/${year} is correct date time!`))
+        res.status(200).json(`${day}/${month}/${year} is correct date time!`)
         return;
     }else{
-        res.json(BadRequest(`${day}/${month}/${year} is NOT correct date time!`))
+        // res.json(BadRequest(`${day}/${month}/${year} is NOT correct date time!`))
+        res.status(400).json(`${day}/${month}/${year} is NOT correct date time!`)
         return;
     }
 
