@@ -10,9 +10,6 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const month = req.body.month;
     const year = req.body.year;
 
-    console.log(day,month,year);
-    
-
    //dùng isNaN(biến) để check xem biến đó có phải số k
     if(isNaN(day)){
         res.json(BadRequest(400, "Input data for Day is incorrect format!"));
@@ -36,8 +33,10 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     
     if(checkDateTime(day, month, year)){
         res.json(MessageResponse(`${day}/${month}/${year} is correct date time!`))
+        return;
     }else{
         res.json(BadRequest(400, `${day}/${month}/${year} is NOT correct date time!`))
+        return;
     }
 
 })
