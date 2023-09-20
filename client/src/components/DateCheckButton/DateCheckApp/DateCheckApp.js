@@ -2,10 +2,14 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./DateCheckApp.module.scss";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCheck,
+    faExclamationTriangle,
+    faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-import axios from 'axios'
+import axios from "axios";
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +18,10 @@ function DateCheckApp({ visible, setVisible }) {
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
     const [detail, setDetail] = useState(false);
+    const [mess, setMess] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [fail, setFail] = useState(false);
+    const [messDesc, setMessDesc] = useState("");
 
     const handleClick = () => {
         setVisible(!visible);
@@ -29,22 +37,36 @@ function DateCheckApp({ visible, setVisible }) {
         setYear("");
     };
 
+    const handleMess = () => {
+        setMess(!mess);
+    };
+
     const handleSubmit = () => {
-        console.log(day);
-        console.log(month);
-        console.log(year);
-
-        axios.post('http://localhost:3000/checkDateTime', {
-            day: day,
-            month: month,
-            year: year,
-        }).then((res) => {
-            console.log(res)
-        }).catch((error) => {
-            console.log(error);
-        })
-    }
-
+        axios
+            .post("http://localhost:3000/checkDateTime", {
+                day: day,
+                month: month,
+                year: year,
+            })
+            .then((res) => {
+                console.log(res);
+                if (res.status === 200) {
+                    setMess(!mess);
+                    setSuccess(true);
+                    setFail(false);
+                    setMessDesc(res.data);
+                }
+                if (res.status === 400) {
+                    setMess(!mess);
+                    setSuccess(false);
+                    setFail(true);
+                    setMessDesc(res.data);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div className={cx("background")}>
@@ -93,7 +115,9 @@ function DateCheckApp({ visible, setVisible }) {
                         <button className={cx("btn")} onClick={handleClear}>
                             Clear
                         </button>
-                        <button className={cx("btn")} onClick={handleSubmit}>Check</button>
+                        <button className={cx("btn")} onClick={handleSubmit}>
+                            Check
+                        </button>
                     </div>
                 </div>
             </div>
@@ -126,6 +150,57 @@ function DateCheckApp({ visible, setVisible }) {
                                     onClick={handleDetail}
                                 >
                                     Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                ""
+            )}
+
+            {mess ? (
+                <div className={cx("message")}>
+                    <div className={cx("message-wrapper")}>
+                        <div className={cx("message-header")}>
+                            <div className={cx("message-title")}>
+                                {success ? "Success" : "Error"}
+                            </div>
+                            <FontAwesomeIcon
+                                onClick={handleMess}
+                                className={cx("message-btn")}
+                                icon={faXmark}
+                            />
+                        </div>
+                        <div className={cx("message-content")}>
+                            <div className={cx("message-content-wrapper")}>
+                                {success ? (
+                                    <FontAwesomeIcon
+                                        className={cx("message-icon-success")}
+                                        icon={faCheck}
+                                    />
+                                ) : (
+                                    ""
+                                )}
+                                {fail ? (
+                                    <FontAwesomeIcon
+                                        className={cx("message-icon-error")}
+                                        icon={faExclamationTriangle}
+                                    />
+                                ) : (
+                                    ""
+                                )}
+
+                                <div className={cx("message-desc")}>
+                                    {messDesc}
+                                </div>
+                            </div>
+                            <div className={cx("message-footer")}>
+                                <button
+                                    className={cx("message-submit")}
+                                    onClick={handleMess}
+                                >
+                                    OK
                                 </button>
                             </div>
                         </div>
