@@ -5,6 +5,8 @@ import styles from "./DateCheckApp.module.scss";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
+import axios from 'axios'
+
 const cx = classNames.bind(styles);
 
 function DateCheckApp({ visible, setVisible }) {
@@ -26,6 +28,23 @@ function DateCheckApp({ visible, setVisible }) {
         setMonth("");
         setYear("");
     };
+
+    const handleSubmit = () => {
+        console.log(day);
+        console.log(month);
+        console.log(year);
+
+        axios.post('http://localhost:3000/checkDateTime', {
+            day: day,
+            month: month,
+            year: year,
+        }).then((res) => {
+            console.log(res)
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
 
     return (
         <div className={cx("background")}>
@@ -74,7 +93,7 @@ function DateCheckApp({ visible, setVisible }) {
                         <button className={cx("btn")} onClick={handleClear}>
                             Clear
                         </button>
-                        <button className={cx("btn")}>Check</button>
+                        <button className={cx("btn")} onClick={handleSubmit}>Check</button>
                     </div>
                 </div>
             </div>
