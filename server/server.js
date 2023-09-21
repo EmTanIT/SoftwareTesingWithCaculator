@@ -11,7 +11,7 @@ import indexRouter from './routes/index.js'
 const server = express()
 const PORT = process.env.PORT || 3000
 server.use(bodyParser.urlencoded({extended: true}))
-server.use(overwriteResponseJSON)
+// server.use(overwriteResponseJSON)
 // ===== Middlewares =====
 server.use(cors())
 server.use(bodyParser.json())
