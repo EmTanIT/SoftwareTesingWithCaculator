@@ -50,6 +50,7 @@ function DateCheckApp({ visible, setVisible }) {
             })
             .then((res) => {
                 console.log(res);
+
                 if (res.status === 200) {
                     setMess(!mess);
                     setSuccess(true);
