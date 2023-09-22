@@ -64,15 +64,13 @@ function DateCheckApp({ visible, setVisible }) {
                     setFail(false);
                     setMessDesc(res.data);
                 }
-                if (res.status === 400) {
-                    setMess(!mess);
-                    setSuccess(false);
-                    setFail(true);
-                    setMessDesc(res.data);
-                }
             })
             .catch((error) => {
-                console.log(error);
+                let res = error.response
+                setMess(!mess);
+                setSuccess(false);
+                setFail(true);
+                setMessDesc(res.data);
             });
     };
 
