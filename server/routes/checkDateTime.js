@@ -11,9 +11,9 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const year = req.body.year;
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
-    if(!day || !month || !year){
+    if(!day){
         // res.json(BadRequest("Input data field must be filled"));   
-        res.status(400).json("Input data field must be filled !")
+        res.status(400).json("Input data field to Day must be filled !")
         return;
     }else if(isNaN(day)){
         res.status(400).json("Input data for Day is incorrect format !");
@@ -21,11 +21,17 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     }else if(parseInt(day) < 1 || parseInt(day) > 31){
         res.status(400).json("Input data for Day is out of range !");
         return;
+    }else if(!month){
+        res.status(400).json("Input data field to Month must be filled !")
+        return;
     }else if(isNaN(month)){
         res.status(400).json("Input data for Month is incorrect format !");
         return;
     }else if(parseInt(month) < 1 || parseInt(month) > 12){
         res.status(400).json("Input data for Month is out of range !");
+        return;
+    }else if(!year){
+        res.status(400).json("Input data field to Year must be filled !")
         return;
     }else if(isNaN(year)){
         res.status(400).json("Input data for Year is incorrect format !");
