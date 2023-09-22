@@ -41,6 +41,13 @@ function DateCheckApp({ visible, setVisible }) {
         setMess(!mess);
     };
 
+    function padValue(value) {
+        if (value.length === 1) {
+            return "0" + value;
+        }
+        return value;
+    }
+
     const handleSubmit = () => {
         axios
             .post("http://localhost:3000/checkDateTime", {
@@ -90,6 +97,7 @@ function DateCheckApp({ visible, setVisible }) {
                                 className={cx("input")}
                                 placeholder="Input a day"
                                 onChange={(e) => setDay(e.target.value)}
+                                onBlur={(e) => setDay(padValue(e.target.value))}
                                 value={day}
                             />
                         </div>
@@ -99,6 +107,9 @@ function DateCheckApp({ visible, setVisible }) {
                                 className={cx("input")}
                                 placeholder="Input a month"
                                 onChange={(e) => setMonth(e.target.value)}
+                                onBlur={(e) =>
+                                    setMonth(padValue(e.target.value))
+                                }
                                 value={month}
                             />
                         </div>

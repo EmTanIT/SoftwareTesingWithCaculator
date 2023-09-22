@@ -67,7 +67,7 @@
             }
 
             .input {
-                padding: 10px;
+                padding: 10px 10px 10px 15px;
                 width: 300px;
                 border: 1px solid black;
                 border-radius: 4px;
@@ -112,7 +112,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(49, 49, 49, 0.2);
+    background-color: rgba(49, 49, 49, 0.3);
+    backdrop-filter: blur(4px);
 
     .detail-wrapper {
         width: 250px;
