@@ -214,6 +214,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(67, 67, 67, 0.2);
+    backdrop-filter: blur(4px);
 
     .message-wrapper {
         width: 300px;
