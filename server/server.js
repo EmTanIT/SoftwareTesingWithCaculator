@@ -5,7 +5,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import checkDate from './routes/checkDateTime.js'
-import indexRouter from './routes/index.js'
+import testPostmanRouter from './routes/testPostman.js'
 
 // ===== Config =====
 const server = express()
@@ -17,9 +17,9 @@ server.use(cors())
 server.use(bodyParser.json())
 
 // ===== Routes =====
-server.use('/', indexRouter)
-server.use('/checkDateTime', checkDate)
 
+server.use('/checkDateTime', checkDate)
+server.use('', testPostmanRouter)
 server.listen(PORT, () => {
     console.log(`Server is listening at PORT=${PORT}`)
 })
