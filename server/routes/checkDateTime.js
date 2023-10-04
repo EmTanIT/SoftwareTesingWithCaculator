@@ -11,32 +11,32 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const year = req.body.year;
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
-    if(!day){
+    if(checkDayEmpty(day)){
         // res.json(BadRequest("Input data field must be filled"));   
         res.status(400).json("Input data field to Day must be filled !")
         return;
-    }else if(isNaN(day)){
+    }else if(checkDayFormat(day)){
         res.status(400).json("Input data for Day is incorrect format !");
         return;
-    }else if(parseInt(day) < 1 || parseInt(day) > 31){
+    }else if(!checkDayRange(day)){
         res.status(400).json("Input data for Day is out of range !");
         return;
-    }else if(!month){
+    }else if(checkMonthEmpty(month)){
         res.status(400).json("Input data field to Month must be filled !")
         return;
-    }else if(isNaN(month)){
+    }else if(checkMonthFormat(month)){
         res.status(400).json("Input data for Month is incorrect format !");
         return;
-    }else if(parseInt(month) < 1 || parseInt(month) > 12){
+    }else if(!checkMonthRange(month)){
         res.status(400).json("Input data for Month is out of range !");
         return;
-    }else if(!year){
+    }else if(checkYearEmpty(year)){
         res.status(400).json("Input data field to Year must be filled !")
         return;
-    }else if(isNaN(year)){
+    }else if(checkYearFormat(year)){
         res.status(400).json("Input data for Year is incorrect format !");
         return;
-    }else if(parseInt(year) < 1000 || parseInt(year) > 3000){
+    }else if(!checkYearRange(year)){
         res.status(400).json("Input data for Year is out of range !");
         return;
     }
@@ -65,5 +65,44 @@ function checkDateTime(d, m, y){
 	}
 	return d <= max;
 }
+
+//check range
+export function checkDayRange(day) {
+    return day >= 1 && day <= 31;
+}
+
+export function checkMonthRange(month) {
+    return month >= 1 && month <= 12;
+}
+
+export function checkYearRange(year) {
+    return year >= 1000 && year <= 3000;
+}
+
+// //check format
+export function checkDayFormat(day){
+    return isNaN(day);
+}
+
+export function checkMonthFormat(month){
+    return isNaN(month);
+}
+
+export function checkYearFormat(year){
+    return isNaN(year);
+}
+//check empty field
+export function checkDayEmpty(day){
+    return !day;
+}
+
+export function checkMonthEmpty(month){
+    return !month;
+}
+
+export function checkYearEmpty(year){
+    return !year;
+}
+
 
 export default router
