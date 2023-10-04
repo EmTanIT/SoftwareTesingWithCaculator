@@ -12,10 +12,9 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
     if(checkDayEmpty(day)){
-        // res.json(BadRequest("Input data field must be filled"));   
         res.status(400).json("Input data field to Day must be filled !")
         return;
-    }else if(checkDayFormat(day)){
+    }else if(!checkDayFormat(day)){
         res.status(400).json("Input data for Day is incorrect format !");
         return;
     }else if(!checkDayRange(day)){
@@ -24,7 +23,7 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     }else if(checkMonthEmpty(month)){
         res.status(400).json("Input data field to Month must be filled !")
         return;
-    }else if(checkMonthFormat(month)){
+    }else if(!checkMonthFormat(month)){
         res.status(400).json("Input data for Month is incorrect format !");
         return;
     }else if(!checkMonthRange(month)){
@@ -33,7 +32,7 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     }else if(checkYearEmpty(year)){
         res.status(400).json("Input data field to Year must be filled !")
         return;
-    }else if(checkYearFormat(year)){
+    }else if(!checkYearFormat(year)){
         res.status(400).json("Input data for Year is incorrect format !");
         return;
     }else if(!checkYearRange(year)){
@@ -80,16 +79,23 @@ export function checkYearRange(year) {
 }
 
 // //check format
-export function checkDayFormat(day){
-    return isNaN(day);
+
+export function checkDayFormat(day) {    
+    if(!isNaN(day)){//isNaN(text) -> true || isNaN(Number) -> false
+        return (parseFloat(day) - parseInt(day) == 0) ? true : false; 
+    }else return false;
 }
 
-export function checkMonthFormat(month){
-    return isNaN(month);
+export function checkMonthFormat(month) {    
+    if(!isNaN(month)){
+        return (parseFloat(month) - parseInt(month) == 0) ? true : false; 
+    }else return false;
 }
 
-export function checkYearFormat(year){
-    return isNaN(year);
+export function checkYearFormat(year) {    
+    if(!isNaN(year)){
+        return (parseFloat(year) - parseInt(year) == 0) ? true : false; 
+    }else return false;
 }
 //check empty field
 export function checkDayEmpty(day){
