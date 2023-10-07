@@ -42,6 +42,9 @@ function DateCheckApp({ visible, setVisible }) {
     };
 
     function padValue(value) {
+        if(isNaN(value)){
+            return value 
+        }
         if (value.length === 1) {
             return "0" + value;
         }

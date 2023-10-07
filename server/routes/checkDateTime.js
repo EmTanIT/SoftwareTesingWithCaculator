@@ -11,9 +11,8 @@ router.post('/', fileUpload(), async (req, res) => {//de post + fileUpload() thi
     const year = req.body.year;
 
    //dùng isNaN(biến) để check xem biến đó có phải số k
-    if(!day){
-        // res.json(BadRequest("Input data field must be filled"));   
-        res.status(400).json("Input data field to Day must be filled !")
+    if(!day){  
+        res.status(400).json("Input data field to Day must be filled !");
         return;
     }else if(isNaN(day)){
         res.status(400).json("Input data for Day is incorrect format !");
