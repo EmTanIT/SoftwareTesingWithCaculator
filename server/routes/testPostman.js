@@ -8,13 +8,17 @@ router.post('/testDateTimeWithPostman', fileUpload(), async (req, res) => {
     const year = req.body.year;
     let actualValue;
 
+    
+    
     if(checkDateTime(day, month, year)){
+       
         actualValue = true;
         res.json({
             actualValue: actualValue
         });
         return;
     }else{
+        
         actualValue = false;
         res.json({
             actualValue: actualValue
@@ -43,32 +47,35 @@ function checkDateTime(d, m, y){
 
 //check range
 export function checkDayRange(day) {
-    return day < 1 && day > 31;
+    return (day < 1 || day > 31) ? true : false;
 }
 
 export function checkMonthRange(month) {
-    return month <  1 && month > 12;
+    return (month <  1 || month > 12) ? true : false;
 }
 
 export function checkYearRange(year) {
-    return year < 1000 && year > 3000;
+    return (year < 1000 || year > 3000) ? true : false;
 }
 
 // //check format
 
-export function checkDayFormat(day) {    
+export function checkDayFormat(day) {  
+    if(day.length == 0) return true;
     if(!isNaN(day)){//isNaN(text) -> true || isNaN(Number) -> false
         return (parseFloat(day) - parseInt(day) == 0) ? false : true; 
     }else return false;
 }
 
-export function checkMonthFormat(month) {    
+export function checkMonthFormat(month) {   
+    if(month.length == 0) return true;
     if(!isNaN(month)){
         return (parseFloat(month) - parseInt(month) == 0) ? false : true; 
     }else return false;
 }
 
-export function checkYearFormat(year) {    
+export function checkYearFormat(year) {  
+    if(year.length == 0) return true;
     if(!isNaN(year)){
         return (parseFloat(year) - parseInt(year) == 0) ? false : true; 
     }else return false;
@@ -76,15 +83,18 @@ export function checkYearFormat(year) {
 
 //check empty field
 export function checkDayEmpty(day){
-    return !day;
+    if(day.length == 0) return true;
+    else return false;
 }
 
 export function checkMonthEmpty(month){
-    return !month;
+    if(month.length == 0) return true;
+    else return false;
 }
 
 export function checkYearEmpty(year){
-    return !year;
+    if(year.length == 0) return true;
+    else return false;
 }
 
 
