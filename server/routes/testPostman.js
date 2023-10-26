@@ -11,17 +11,21 @@ router.post('/testDateTimeWithPostman', fileUpload(), async (req, res) => {
     
     
     if(checkDateTime(day, month, year)){
-       
         actualValue = true;
         res.json({
-            actualValue: actualValue
+            actualValue: actualValue,
+            day: day,
+            month: month,
+            year: year
         });
         return;
-    }else{
-        
+    }else{ 
         actualValue = false;
         res.json({
-            actualValue: actualValue
+            actualValue: actualValue,
+            day: day,
+            month: month,
+            year: year
         });
         return;
     }
